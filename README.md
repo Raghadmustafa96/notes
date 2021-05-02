@@ -1,7 +1,9 @@
 # resty
 
 
-[deploy link](https://resty401.herokuapp.com/)
+[deploy heroku link](https://resty401.herokuapp.com/)
+
+[deploy netlify link](https://resty26.netlify.app/)
 
 ![UMl](/react.PNG)
 
