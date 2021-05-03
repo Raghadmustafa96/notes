@@ -1,30 +1,31 @@
 import React from 'react';
 
-class Main extends React.Component {
+class Form extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         words: '',
-        method: 'GET'
+        method: ''
       };
     }
   
     handleClick = (e) => {
       const input1 = document.getElementById('words-input').value;
-      this.setState({ words: input1 });
+      const btnText = document.getElementsByClassName('active') ;
+      this.setState({ words: input1 ,  method: btnText[0].textContent });
     };
   
     handleActive = (e) => {
-      let btns = document.getElementsByClassName("btn");
+      var btns = document.getElementsByClassName("btn");
       for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-          var current = document.getElementsByClassName("active");
+        btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        if (current.length > 0) { 
           current[0].className = current[0].className.replace(" active", "");
-          this.className += " active";
+        }
+        this.className += " active";
         });
-      }
-      const btnText = document.getElementsByClassName('active') ;
-      this.setState({ method: btnText[0].textContent });
+      } 
     };
   
     render() {
@@ -37,7 +38,7 @@ class Main extends React.Component {
           </div>
       
           <div id="myDIV">
-            <button onClick={this.handleActive} className="btn active">GET</button>
+            <button onClick={this.handleActive} className="btn">GET</button>
             <button onClick={this.handleActive} className="btn">POST</button>
             <button onClick={this.handleActive} className="btn">PUT</button>
             <button onClick={this.handleActive} className="btn">DELETE</button>
@@ -49,4 +50,4 @@ class Main extends React.Component {
     }
   }
 
-  export default Main;
+  export default Form;
