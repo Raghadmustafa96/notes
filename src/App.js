@@ -5,13 +5,13 @@ import './App.scss';
 
 import Header from './Header'
 import Footer from './Footer'
-import Main from './Main'
+import Form from './Form'
 
 function App() {
   return (
     <>
       <Header />
-      <Main />
+      <Form />
       <Footer />
     </>
   );
