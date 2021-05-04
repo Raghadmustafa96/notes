@@ -12,13 +12,13 @@ class Form extends React.Component {
     handleClick = async(e) =>{
       e.preventDefault();
       const input1 = document.getElementById('words-input').value;
-      const btnText = document.getElementsByClassName('active') ;
-      this.setState({ words: input1 });
+      // const btnText = document.getElementsByClassName('active') ;
+      // this.setState({ words: input1 });
       // this.setState({ words: input1 ,  method: btnText[0].textContent });
       // console.log(this.props);
 
         try {
-          const raw = await fetch(this.state.words);
+          const raw = await fetch(input1);
           const data = await raw.json();
           const results = data
           let headers = {}
