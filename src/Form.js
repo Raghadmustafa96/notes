@@ -12,7 +12,7 @@ class Form extends React.Component {
     handleClick = async(e) =>{
       e.preventDefault();
       const input1 = document.getElementById('words-input').value;
-      const btnText = document.getElementsByClassName('active') ;
+      // const btnText = document.getElementsByClassName('active') ;
       this.setState({ words: input1 });
       // this.setState({ words: input1 ,  method: btnText[0].textContent });
       // console.log(this.props);
