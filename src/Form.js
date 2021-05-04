@@ -16,6 +16,7 @@ class Form extends React.Component {
       // this.setState({ words: input1 });
       // this.setState({ words: input1 ,  method: btnText[0].textContent });
       // console.log(this.props);
+      
 
         try {
           const raw = await fetch(input1);
