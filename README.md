@@ -1,11 +1,11 @@
 # resty
 
 
-[deploy heroku link](https://resty401.herokuapp.com/)
+[deploy heroku link](https://resty401props.herokuapp.com/)
 
-[deploy netlify link](https://resty26.netlify.app/)
+[deploy netlify link](https://resty26props.netlify.app/)
 
-![UMl](/react.PNG)
+![UMl](/props.PNG)
 
 # Getting Started with Create React App
 

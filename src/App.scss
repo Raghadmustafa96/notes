@@ -24,10 +24,12 @@ main{
     margin: 5px;
   }
   
-  #content{
-    border: solid 1px black;
-    height: 300px;
-    margin: 20px;
-  } 
+
 }
 
+#content{
+  border: solid 1px black;
+  height: 300px;
+  margin: 20px;
+  overflow:scroll;
+} 

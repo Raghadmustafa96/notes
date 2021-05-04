@@ -9,12 +9,29 @@ class Form extends React.Component {
       };
     }
   
-    handleClick = (e) => {
+    handleClick = async(e) =>{
+      e.preventDefault();
       const input1 = document.getElementById('words-input').value;
       const btnText = document.getElementsByClassName('active') ;
-      this.setState({ words: input1 ,  method: btnText[0].textContent });
-    };
-  
+      this.setState({ words: input1 });
+      // this.setState({ words: input1 ,  method: btnText[0].textContent });
+      // console.log(this.props);
+
+        try {
+          const raw = await fetch(this.state.words);
+          const data = await raw.json();
+          const results = data
+          let headers = {}
+          // console.log('......',raw.headers.forEach);
+
+          raw.headers.forEach((item,key)=> { 
+            return headers[key]=item});
+          this.props.handler(headers,results.results)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    
     handleActive = (e) => {
       var btns = document.getElementsByClassName("btn");
       for (var i = 0; i < btns.length; i++) {
@@ -44,7 +61,6 @@ class Form extends React.Component {
             <button onClick={this.handleActive} className="btn">DELETE</button>
           </div>
   
-          <div id="content"> {this.state.method} {this.state.words}</div>
         </main>
       );
     }
