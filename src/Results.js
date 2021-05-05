@@ -1,16 +1,20 @@
-import React from 'react'
-import './App.scss';
 import ReactJson from 'react-json-view';
+import './App.scss';
 
 function Results(props) {
-    return (
-        <div id="content">
-            <h2> Results API:</h2>
-            <h3> Headers: <ReactJson src={props.headers} /></h3>
-            <h3>Results:</h3>
-            < ReactJson src={props.results} />
-        </div>
-    );
-}
+    if (props.show) {
 
-export default Results;
+        return (
+            <div id="content" className="content">
+                <h2> Results API:</h2>
+                <br />
+                <ul>
+                    <li>headers:<ReactJson id="pretty" src={props.data.headers} /></li>
+                    <li>results:</li>
+                    <li><ReactJson id="pretty" src={props.data.body} /></li>
+                </ul>
+            </div>
+        );
+    } else return props.data.error;
+}
+export default Results
