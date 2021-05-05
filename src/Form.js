@@ -21,16 +21,19 @@ class Form extends React.Component {
     this.props.updateResults({ ...this.state });
   }
 
+  //checked={this.props.api.method==='Get'}
+
   render() {
     return (
       <div>
+
         <form onSubmit={this.handleSubmit}>
           <div>
           <label>URL:</label>
           <input type="url" name="url" defaultValue={this.props.api.url} />
+
           <input type="submit" value="click" />
           </div>
-
 
           <textarea  type="text" name="body"id="body"rows="7"cols="40"></textarea>
 
@@ -38,9 +41,10 @@ class Form extends React.Component {
 
           <div>
           <label>Get
-          <input type="radio" name="method"  value="Get" />
+          <input type="radio" id='11' name="method"  value="Get"/>
           </label>
           </div>
+
 
           <div>
           <label >Post
