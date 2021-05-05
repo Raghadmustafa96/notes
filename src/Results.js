@@ -2,10 +2,10 @@ import ReactJson from 'react-json-view';
 import './App.scss';
 
 function Results(props) {
-    if (props.show) {
-
-        return (
-            <div id="content" className="content">
+    console.log('0000000000000000000000',props);
+    return (
+        <div>
+            { props.show ? <div id="content" className="content">
                 <h2> Results API:</h2>
                 <br />
                 <ul>
@@ -13,8 +13,8 @@ function Results(props) {
                     <li>results:</li>
                     <li><ReactJson id="pretty" src={props.data.body} /></li>
                 </ul>
-            </div>
-        );
-    } else return props.data.error;
+            </div> : null}
+        </div>
+    );
 }
 export default Results

@@ -28,9 +28,7 @@ class App extends Component {
       body: [],
       callback: { url: '', method: '' },
     }
-
   }
-
 
   callback = (api) => {
     this.setState({ callback: api });
@@ -41,36 +39,85 @@ class App extends Component {
   }
 
   updateResults = async (data) => {
-    try {
       this.setState({
         urls: [...this.state.urls, data.url],
         methods: [...this.state.methods, data.method],
         isLoad: true,
-      });
+      }); 
 
-      let request = await fetch(data.url, { method: data.method });
-      let response = await request.json();
+      console.log('................',data.method);
 
-      if (response) this.toggleMenu();
+      let body1 = data.body;
+      let body2 ;
+      let body3 ;
 
-      let data2 = {
+      if(data.method === 'Get'){
+         body3 = null ;
+         
+      } else {
+        if (body1.length === 0){
+          body3 = null ;
+          } else{
+        body2 = JSON.parse(body1)
+        body3 = JSON.stringify(body2);}
+      }
+      let request;
+      
+  try{
+       request = await fetch(data.url,{
         method: data.method,
-        url: data.url,
-        body: response,
-      };
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+  
+        body: body3
+  
+      })
+    } catch(error){
+      await console.log('______errorrrrrrrrrrrrrrrrr_______',error);
+        //   console.log(data.url);
+        // if(data.url){
+        //   await this.setState({
+        //     body :['url not exist'],
+        //   });
+        // }
 
-      let update = [...this.state.history, data2];
-      localStorage.setItem('h1', JSON.stringify(update));
+        await this.setState({
+          body: [...this.state.body, 'url not found'],
+          isLoad: false,
+          isVisible:true
+        });
+      }
+        
+     
+      console.log('__requesterror',request);
+      if(request){
+        this.toggleMenu();
+        let response = await request.json();
+        console.log(response);
+  
+        let data2 = {
+          method: data.method,
+          url: data.url,
+          body: response,
+        };
 
-      await this.setState({
-        body: [...this.state.body, response],
-        isLoad: false,
-        history: update,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+        let update = [...this.state.history, data2];
+        localStorage.setItem('h1', JSON.stringify(update));
+  
+        await this.setState({
+          body: [...this.state.body, response],
+          isLoad: false,
+          history: update,
+        });
+      }
+    } 
+  
 
   componentDidMount() {
     let history = JSON.parse(localStorage.getItem('h1')) || [];
@@ -89,11 +136,11 @@ class App extends Component {
               <p>Loading</p>
             </Then>
             <Else>
-              <Results show ={this.state.isVisible} data={this.state} />
+              <Results show ={this.state.isVisible} data={this.state}  />
             </Else>
           </If>
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </>
     );
   }
