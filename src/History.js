@@ -1,4 +1,4 @@
-import { If, Then, Else } from 'react-if';
+import { If, Then } from 'react-if';
 
 export default function History(props) {
   function UrlValue(e) {
