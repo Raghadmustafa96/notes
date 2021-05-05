@@ -11,7 +11,7 @@ function Results(props) {
                 <ul>
                     <li>headers:<ReactJson id="pretty" src={props.data.headers} /></li>
                     <li>results:</li>
-                    <li><ReactJson id="pretty" src={props.data.body} /></li>
+                    <li><ReactJson id="pretty" src={props.data.body[props.data.body.length - 1]} /></li>
                 </ul>
             </div>
         );

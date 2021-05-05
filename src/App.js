@@ -41,17 +41,62 @@ class App extends Component {
   }
 
   updateResults = async (data) => {
+    this.setState({
+      urls: [...this.state.urls, data.url],
+      methods: [...this.state.methods, data.method],
+      isLoad: true,
+    });
+
+    console.log('................', data.method);
+
+    let body1 = data.body;
+    let body2;
+    let body3;
+
+    if (data.method === 'Get') {
+      body3 = null;
+
+    } else {
+      if (body1.length === 0) {
+        body3 = null;
+      } else {
+        body2 = JSON.parse(body1)
+        body3 = JSON.stringify(body2);
+      }
+    }
+    let request;
+
     try {
-      this.setState({
-        urls: [...this.state.urls, data.url],
-        methods: [...this.state.methods, data.method],
-        isLoad: true,
+      request = await fetch(data.url, {
+        method: data.method,
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+
+        body: body3
+
+      })
+    } catch (error) {
+      await console.log('______errorrrrrrrrrrrrrrrrr_______', error);
+    
+      await this.setState({
+        body: [...this.state.body, 'url not found'],
+        isLoad: false,
+        isVisible: true
       });
+    }
 
-      let request = await fetch(data.url, { method: data.method });
+
+    console.log('__requesterror', request);
+    if (request) {
+      this.toggleMenu();
       let response = await request.json();
-
-      if (response) this.toggleMenu();
+      console.log(response);
 
       let data2 = {
         method: data.method,
@@ -59,18 +104,31 @@ class App extends Component {
         body: response,
       };
 
-      let update = [...this.state.history, data2];
-      localStorage.setItem('h1', JSON.stringify(update));
+      //..........................................
+      let arr = this.state.history.map(element => {
+        return element.url + element.method;
+      })
+
+      // console.log(arr);
+      let update;
+  
+      if (arr.includes(data2.url + data2.method)) {
+           update = this.state.history
+      } else {
+        update = [...this.state.history, data2];
+        localStorage.setItem('h1', JSON.stringify(update));
+      }
+
 
       await this.setState({
         body: [...this.state.body, response],
         isLoad: false,
+        isVisible: true,
         history: update,
       });
-    } catch (error) {
-      console.log(error);
     }
   }
+
 
   componentDidMount() {
     let history = JSON.parse(localStorage.getItem('h1')) || [];
