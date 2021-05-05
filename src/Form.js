@@ -1,69 +1,69 @@
-import React from 'react';
+import React from 'react'
 
 class Form extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        words: '',
-        method: ''
-      };
-    }
-  
-    handleClick = async(e) =>{
-      e.preventDefault();
-      const input1 = document.getElementById('words-input').value;
-      // const btnText = document.getElementsByClassName('active') ;
-      // this.setState({ words: input1 });
-      // this.setState({ words: input1 ,  method: btnText[0].textContent });
-      // console.log(this.props);
+  constructor(props) {
+    super(props);
 
-        try {
-          const raw = await fetch(input1);
-          const data = await raw.json();
-          const results = data
-          let headers = {}
-          // console.log('......',raw.headers.forEach);
-
-          raw.headers.forEach((item,key)=> { 
-            return headers[key]=item});
-          this.props.handler(headers,results.results)
-        } catch (error) {
-          console.error(error)
-        }
-      }
-    
-    handleActive = (e) => {
-      var btns = document.getElementsByClassName("btn");
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-        var current = document.getElementsByClassName("active");
-        if (current.length > 0) { 
-          current[0].className = current[0].className.replace(" active", "");
-        }
-        this.className += " active";
-        });
-      } 
+    this.state = {
+      url: '',
+      method: 'get',
     };
-  
-    render() {
-      return (
-        <main>
-          <div id="input1">
-          <label>URL:</label>
-          <input id="words-input" type="text" />
-          <button  onClick={this.handleClick}>click</button>
-          </div>
-      
-          <div id="myDIV">
-            <button onClick={this.handleActive} className="btn">GET</button>
-            <button onClick={this.handleActive} className="btn">POST</button>
-            <button onClick={this.handleActive} className="btn">PUT</button>
-            <button onClick={this.handleActive} className="btn">DELETE</button>
-          </div>
-  
-        </main>
-      );
-    }
   }
 
-  export default Form;
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    await this.setState({
+      method: e.target.method.value,
+      url: e.target.url.value,
+      body:e.target.body.value
+    });
+
+    this.props.updateResults({ ...this.state });
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+          <label>URL:</label>
+          <input type="url" name="url" defaultValue={this.props.api.url} />
+          <input type="submit" value="click" />
+          </div>
+
+
+          <textarea  type="text" name="body"id="body"rows="7"cols="40"></textarea>
+
+          <div>
+
+          <div>
+          <label>Get
+          <input type="radio" name="method"  value="Get" />
+          </label>
+          </div>
+
+          <div>
+          <label >Post
+          <input type="radio" name="method"  value="Post" />
+          </label>
+          </div>
+          
+          <div>
+          <label>Put
+          <input type="radio" name="method"  value="Put" />
+          </label>
+          </div>
+
+          <div>
+          <label>Delete
+          <input type="radio" name="method"  value="Delete" />
+          </label>
+          </div>
+
+          </div>
+        </form>
+      </div>
+    )
+  }
+}
+export default Form;
