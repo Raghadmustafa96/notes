@@ -6,7 +6,7 @@ function Results(props) {
 
         return (
             <div id="content" className="content">
-                <h2> Results API:</h2>
+                <h2 id='Results'> Results API:</h2>
                 <br />
                 <ul>
                     <li>headers:<ReactJson id="pretty" src={props.data.headers} /></li>

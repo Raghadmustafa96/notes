@@ -140,7 +140,6 @@ class App extends Component {
       <>
         <Header />
         <Form updateResults={this.updateResults} api={this.state.callback} />
-        <main>
           <History history={this.state.history} callback={this.callback} />
           <If condition={this.state.isLoad}>
             <Then>
@@ -150,7 +149,6 @@ class App extends Component {
               <Results show ={this.state.isVisible} data={this.state} />
             </Else>
           </If>
-        </main>
         <Footer />
       </>
     );
