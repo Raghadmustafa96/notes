@@ -22,8 +22,6 @@ class Form extends React.Component {
     this.props.updateResults({ ...this.state });
   }
 
-  //checked={this.props.api.method==='Get'}
-
   render() {
     return (
       <div>
