@@ -5,7 +5,7 @@
 
 [deploy netlify link](https://resty26composition.netlify.app/)
 
-![UMl](/props.PNG)
+![UMl](/lab28.PNG)
 
 # Getting Started with Create React App
 
