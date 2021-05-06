@@ -1,4 +1,5 @@
 import { If, Then } from 'react-if';
+import './App.scss';
 
 export default function History(props) {
   function UrlValue(e) {
@@ -12,7 +13,7 @@ export default function History(props) {
       <Then>
         {props.history.map((data, index) => {
           return (
-            <div onClick={UrlValue} key={index}>
+            <div class='route' onClick={UrlValue} key={index}>
               {data.method} {data.url}
             </div>
           );
