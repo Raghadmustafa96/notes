@@ -10,6 +10,7 @@ import Form from './Form';
 import Footer from './Footer';
 import Results from './Results';
 import History from './History';
+import './App.scss';
 
 
 class Home extends Component {
