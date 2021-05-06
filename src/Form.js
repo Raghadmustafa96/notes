@@ -21,12 +21,9 @@ class Form extends React.Component {
     this.props.updateResults({ ...this.state });
   }
 
-  //checked={this.props.api.method==='Get'}
-
   render() {
     return (
       <div>
-
         <form onSubmit={this.handleSubmit}>
           <div>
           <label>URL:</label>
@@ -41,33 +38,43 @@ class Form extends React.Component {
 
           <div>
           <label>Get
-          <input type="radio" id='11' name="method"  value="Get"/>
+          <input type="radio" id='Get' name="method"   ref={this.handleClick()}
+  value="Get"/>
           </label>
           </div>
 
 
           <div>
           <label >Post
-          <input type="radio" name="method"  value="Post" />
+          <input type="radio" id='Post' name="method"   ref={this.handleClick}
+ value="Post" />
           </label>
           </div>
           
           <div>
           <label>Put
-          <input type="radio" name="method"  value="Put" />
+          <input type="radio"  id='Put' name="method"   ref={this.handleClick}
+ value="Put" />
           </label>
           </div>
 
           <div>
           <label>Delete
-          <input type="radio" name="method"  value="Delete" />
+          <input type="radio"  id='Delete' name="method"   ref={this.handleClick}
+ value="Delete" />
           </label>
           </div>
-
+          { console.log(document.getElementById(this.props.api.method))}
           </div>
         </form>
       </div>
     )
   }
+
+  handleClick = (e) => {
+    if(this.props.api.method) {
+      document.querySelector(`input[value=${this.props.api.method}]`).click()
+  }; 
+ }
 }
 export default Form;
