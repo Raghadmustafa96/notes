@@ -25,12 +25,13 @@ class Home extends Component {
       isVisible: false,
       error: '',
       body: [],
-      callback: { url: '', method: '' },
+      callback: { url: this.props.location.data?.url , method: this.props.location.data?.method },
     }
   }
 
 
   callback = (api) => {
+    console.log('api Home' , api);
     this.setState({ callback: api });
   }
 

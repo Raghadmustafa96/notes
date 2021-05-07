@@ -4,20 +4,20 @@ const Header = () => {
     return (
       <header>
         <h1>RESTy</h1>
-        <nav>
+        <nav className="nav">
         <ul>
           <li>
-            <NavLink exact to="/">
+            <NavLink className="navItem" exact to="/">
               Home
              </NavLink>
           </li>
           <li>
-            <NavLink to="/history">
+            <NavLink className="navItem" to="/history">
               History
              </NavLink>
           </li>
           <li>
-            <NavLink to="/help">
+            <NavLink className="navItem" to="/help">
               Help
              </NavLink>
           </li>

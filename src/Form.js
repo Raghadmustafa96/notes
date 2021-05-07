@@ -25,10 +25,12 @@ class Form extends React.Component {
   render() {
     return (
       <div>
+        {console.log('form', this.props.api.url, this.props.api.method)}
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>URL:</label>
-            <input type="url" name="url" defaultValue={this.props.api.url} />
+            <input type="url" name="url" key={this.props.api.url} defaultValue={this.props.api.url} />
+            {console.log('defaultValue', this.props.api.url)}
 
             <input type="submit" value="click" />
           </div>
@@ -39,7 +41,8 @@ class Form extends React.Component {
 
             <div>
               <label>Get
-          <input type="radio" id='Get' name="method" ref={this.handleClick()}
+          <input type="radio" key={this.props.api.method} defaultChecked={this.props.api.method === "Get"}
+                  id='Get' name="method"
                   value="Get" />
               </label>
             </div>
@@ -47,35 +50,33 @@ class Form extends React.Component {
 
             <div>
               <label >Post
-          <input type="radio" id='Post' name="method" ref={this.handleClick}
+          <input type="radio" key={this.props.api.method} defaultChecked={this.props.api.method === "Post"} id='Post' name="method"
                   value="Post" />
               </label>
             </div>
 
             <div>
               <label>Put
-          <input type="radio" id='Put' name="method" ref={this.handleClick}
+          <input type="radio" key={this.props.api.method} defaultChecked={this.props.api.method === "Put"} id='Put' name="method"
                   value="Put" />
               </label>
             </div>
-
             <div>
               <label>Delete
-          <input type="radio" id='Delete' name="method" ref={this.handleClick}
+          <input type="radio" key={this.props.api.method} defaultChecked={this.props.api.method === "Delete"} id='Delete' name="method"
                   value="Delete" />
               </label>
             </div>
-            {console.log(document.getElementById(this.props.api.method))}
           </div>
         </form>
       </div>
     )
   }
 
-  handleClick = (e) => {
-    if (this.props.api.method) {
-      document.querySelector(`input[value=${this.props.api.method}]`).click()
-    };
-  }
+  // handleClick = (e) => {
+  //   if (this.props.api.method) {
+  //     document.querySelector(`input[value=${this.props.api.method}]`).click()
+  //   };
+  // }
 }
 export default Form;

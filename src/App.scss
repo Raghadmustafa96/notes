@@ -119,12 +119,55 @@ textarea {
     ul li {
       display: inline-block;
       font-size: 20px;
-      padding: 20px;
+      padding: 5px;
     }
 
     #content h2 {
       margin: 10px;
     }
 
-  margin: 10px;
-}
+    .reRun{
+      width: 20;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .rerunLink{
+      width: 20;
+      background-color: #000000;
+      color: white;
+      padding: 5px;
+      // margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px;
+      text-decoration: none
+    }
+
+    .route{
+      width: 30%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .navItem {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none
+    }
