@@ -5,6 +5,8 @@
 
 [deploy netlify link](https://resty26composition2.netlify.app/)
 
+![lab26](lab26.PNG)
+
 
 # Getting Started with Create React App
 

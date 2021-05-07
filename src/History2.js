@@ -1,6 +1,8 @@
 import React from 'react'
-import { If, Then , Else } from 'react-if';
+import { If, Then, Else } from 'react-if';
 import ReactJson from 'react-json-view';
+import { Link } from 'react-router-dom'
+
 
 class History2 extends React.Component {
     constructor(props) {
@@ -25,14 +27,23 @@ class History2 extends React.Component {
                     <Then>
                         {this.state.storage.map((data, index) => {
                             return (
-                                <div onClick={() => { this.UrlValue(data) }} key={index}>
+                                <div className= 'reRun' onClick={() => { this.UrlValue(data) }} key={index}>
                                     {data.method} {data.url}
+                                    <Link className='rerunLink' to={{
+                                        pathname: '/',
+                                        data: {
+                                            url: data.url,
+                                            method: data.method
+                                        }
+                                    }}>
+                                        reRun
+                </Link>
                                 </div>
                             );
                         })}
                     </Then>
                     <Else>
-                       <div> there are no data</div>
+                        <div> there are no data</div>
                     </Else>
                 </If>
 
